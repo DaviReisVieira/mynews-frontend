@@ -1,6 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import Head from "next/head";
-import Link from "next/link";
 
 import styles from "../styles/components/Login.module.css";
 
