@@ -47,7 +47,7 @@
 .footer {
   display: flex;
   margin: 5px 0;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .container button {

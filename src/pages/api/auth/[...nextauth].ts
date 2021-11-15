@@ -9,7 +9,7 @@ namespace NextAuthUtils {
   export const refreshToken = async function (refreshToken: any) {
     try {
       const response = await axios.post(
-        `${process.env.BACKEND_API_BASE}/api/auth/token/refresh/`,
+        `${process.env.NEXT_PUBLIC_BACKEND_API_BASE}/api/auth/token/refresh/`,
         {
           refresh: refreshToken,
         }
@@ -56,7 +56,7 @@ const settings: NextAuthOptions = {
           try {
             const response = await axios.post(
               // tip: use a seperate .ts file or json file to store such URL endpoints
-              `${process.env.BACKEND_API_BASE}/api/social/login/google/`,
+              `${process.env.NEXT_PUBLIC_BACKEND_API_BASE}/api/social/login/google/`,
               {
                 access_token: accessToken, // note the differences in key and value variable names
                 id_token: idToken,

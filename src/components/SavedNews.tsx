@@ -27,7 +27,7 @@ const SavedNews: React.FunctionComponent<NewsComponentProps> = ({
   }
 
   async function deleteNews() {
-    var url = "http://localhost:8000/api/news/saved/";
+    var url = `${process.env.NEXT_PUBLIC_BACKEND_API_BASE}/api/news/saved/`;
     try {
       const response = await axios.delete(url, {
         headers: { Authorization: `Bearer ${session?.accessToken}` },

@@ -23,7 +23,8 @@ const MyNews: NextPage = () => {
     }
 
     async function fetchSavedNews() {
-      var url = "http://localhost:8000/api/news/saved/";
+      var url = `${process.env.NEXT_PUBLIC_BACKEND_API_BASE}/api/news/saved/`;
+
       const response = await fetch(url, {
         method: "get",
         headers: new Headers({

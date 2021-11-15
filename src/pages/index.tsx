@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import DashboardNews from "../components/DashboardNews";
 import Footer from "../components/Footer";
+import Login from "../components/Login";
 import MenuBox from "../components/MenuBox";
 import News from "../components/News";
 import styles from "../styles/Home.module.css";
@@ -44,11 +45,7 @@ const Home: NextPage = () => {
       <MenuBox />
 
       <main className={styles.main}>
-        {session ? (
-          <DashboardNews session={session} />
-        ) : (
-          <h1>Entre para ver as notícias</h1>
-        )}
+        {session ? <DashboardNews session={session} /> : <Login />}
       </main>
 
       <Footer />

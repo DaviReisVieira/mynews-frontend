@@ -35,8 +35,7 @@ const DashboardNews: React.FunctionComponent<NewsComponentProps> = ({
     }
 
     async function fetchNews() {
-      var url = "http://localhost:8000/api/news/";
-      // var url = "http://localhost:3000/api/articles"; // for localhost
+      var url = `${process.env.NEXT_PUBLIC_BACKEND_API_BASE}/api/news/`;
 
       const response = await fetch(url, {
         method: "get",
@@ -52,7 +51,7 @@ const DashboardNews: React.FunctionComponent<NewsComponentProps> = ({
     }
 
     async function fetchSavedNews() {
-      var url = "http://localhost:8000/api/news/saved/";
+      var url = `${process.env.NEXT_PUBLIC_BACKEND_API_BASE}/api/news/saved/`;
       const response = await fetch(url, {
         method: "get",
         headers: new Headers({
