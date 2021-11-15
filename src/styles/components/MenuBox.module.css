@@ -29,7 +29,7 @@
 .links a {
   font-weight: 500;
   font-size: 1rem;
-  margin: 0 3rem;
+  margin: 0 2rem;
 }
 
 .links a:after {
@@ -59,12 +59,29 @@
   margin: 0px 15px;
 }
 
-@media (max-width: 900px) {
+.linksHamburguer {
+  display: none;
+}
+
+@media (max-width: 820px) {
   .container {
     display: flex;
     justify-content: space-between;
   }
   .links {
     display: none;
+  }
+
+  .linksHamburguer {
+    display: flex;
+  }
+
+  .linksHamburguer a {
+    font-size: 1.2rem;
+    margin: 0.5rem;
+  }
+
+  .logoText {
+    font-size: 1.4rem;
   }
 }

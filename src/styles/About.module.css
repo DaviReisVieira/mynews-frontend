@@ -1,6 +1,7 @@
 .container {
   text-align: center;
-  margin-top: 64px;
+  margin-top: 32px;
+  padding: 1rem 1.5rem;
 }
 .container img {
   margin: 10px 0;

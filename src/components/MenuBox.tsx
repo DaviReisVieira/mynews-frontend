@@ -5,9 +5,9 @@ import Router from "next/router";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 const pages = [
-  { href: "/", title: "Home" },
-  { href: "/about", title: "Sobre Nós" },
-  { href: "https://github.com/DaviReisVieira", title: "Contato" },
+  { href: "/", title: "Home", emoji: "🏠" },
+  { href: "/about", title: "Sobre Nós", emoji: "🤔" },
+  { href: "https://github.com/DaviReisVieira", title: "Contato", emoji: "📧" },
 ];
 
 export default function MenuBox() {
@@ -33,9 +33,25 @@ export default function MenuBox() {
           </Link>
         ))}
         {session && (
-          <Link key={`page_saves`} href={"/mynews"}>
-            <a>Suas Notícias</a>
+          <>
+            <Link key={`page_saves`} href={"/mynews"}>
+              <a>Suas Notícias</a>
+            </Link>
+          </>
+        )}
+      </div>
+      <div className={styles.links + " " + styles.linksHamburguer}>
+        {pages.map((page, index) => (
+          <Link key={`page_${index}`} href={page.href}>
+            <a>{page.emoji}</a>
           </Link>
+        ))}
+        {session && (
+          <>
+            <Link key={`page_saves`} href={"/mynews"}>
+              <a>📰</a>
+            </Link>
+          </>
         )}
       </div>
       <div className={styles.buttonsContainer}>
