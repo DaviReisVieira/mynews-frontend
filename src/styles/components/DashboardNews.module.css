@@ -1,0 +1,63 @@
+.container {
+  display: grid;
+  grid-template-areas:
+    "mainNews informations"
+    "mainNews personalNews";
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto 99% 1%;
+  gap: 15px;
+  width: 90%;
+}
+
+.mainNews {
+  grid-area: mainNews;
+  padding: 0 5px;
+}
+
+.personalNews {
+  grid-area: personalNews;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 0 5px;
+}
+
+.informations {
+  grid-area: informations;
+  padding: 10px 5px;
+  display: flex;
+  flex-direction: row;
+}
+
+.informations img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.informations h2 {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.informations h3 {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.informations p {
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+@media (max-width: 900px) {
+  .container {
+    display: flex;
+  }
+  .personalNews {
+    display: none;
+  }
+  .informations {
+    display: none;
+  }
+}
