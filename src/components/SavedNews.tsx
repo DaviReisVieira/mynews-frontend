@@ -40,7 +40,7 @@ const SavedNews: React.FunctionComponent<NewsComponentProps> = ({
   }
 
   return (
-    <div className={styles.container}>
+    <li className={styles.container}>
       <h1>{splitTitle(news.title)}</h1>
       <p>{splitString(news.description)}</p>
       <div className={styles.footer}>
@@ -49,7 +49,7 @@ const SavedNews: React.FunctionComponent<NewsComponentProps> = ({
         </a>
         <a onClick={() => deleteNews()}>Remover</a>
       </div>
-    </div>
+    </li>
   );
 };
 

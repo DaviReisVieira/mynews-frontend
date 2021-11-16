@@ -71,39 +71,43 @@ const DashboardNews: React.FunctionComponent<NewsComponentProps> = ({
 
   return (
     <div className={styles.container}>
-      <div className={styles.mainNews}>
-        {news.map((e, i) => {
-          if (savedNews.some((s) => s.title == e.title)) {
-            e.saved = true;
-          }
-          return <News news={e} key={`news_${i}`} setRefresh={setRefresh} />;
-        })}
-      </div>
-      <div className={styles.personalNews}>
-        {savedNews.map((e, i) => {
-          return (
-            <SavedNews
-              news={e.content}
-              key={`savedNews_${i}`}
-              setRefresh={setRefresh}
-            />
-          );
-        })}
-      </div>
-      <div className={styles.informations}>
-        <div>
-          {session.user.image && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={session.user.image} alt="Foto Avatar" />
-          )}
+      <div>
+        <div className={styles.mainNews}>
+          {news.map((e, i) => {
+            if (savedNews.some((s) => s.title == e.title)) {
+              e.saved = true;
+            }
+            return <News news={e} key={`news_${i}`} setRefresh={setRefresh} />;
+          })}
         </div>
-        <div>
-          <h2>
-            {hour}, {session.user.name}
-          </h2>
-          <h3>{session.user.email}</h3>
-          <p>Notícias salvas: {savedNews.length}</p>
+      </div>
+      <div className={styles.rightBar}>
+        <div className={styles.informations}>
+          <div>
+            {session.user.image && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={session.user.image} alt="Foto Avatar" />
+            )}
+          </div>
+          <div>
+            <h2>
+              {hour}, {session.user.name}
+            </h2>
+            <h3>{session.user.email}</h3>
+            <p>Notícias salvas: {savedNews.length}</p>
+          </div>
         </div>
+        <ul className={styles.personalNews}>
+          {savedNews.map((e, i) => {
+            return (
+              <SavedNews
+                news={e.content}
+                key={`savedNews_${i}`}
+                setRefresh={setRefresh}
+              />
+            );
+          })}
+        </ul>
       </div>
     </div>
   );

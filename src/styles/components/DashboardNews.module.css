@@ -1,24 +1,29 @@
 .container {
-  display: grid;
-  grid-template-areas:
-    "mainNews informations"
-    "mainNews personalNews";
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: auto 99% 1%;
+  display: flex;
   gap: 15px;
-  width: 90%;
+  padding: 0 10px;
 }
 
 .mainNews {
   grid-area: mainNews;
   padding: 0 5px;
+  width: 70%;
+}
+
+.rightBar {
+  padding: 0 10px;
+  position: fixed;
+  right: 10px;
+  width: 30%;
 }
 
 .personalNews {
+  height: 160%;
   grid-area: personalNews;
   overflow-y: scroll;
   overflow-x: hidden;
-  padding: 0 5px;
+  padding: 5px 10px;
+  border: 0.5px solid rgba(var(--b6a, 219, 219, 219), 1);
 }
 
 .informations {
@@ -54,10 +59,12 @@
   .container {
     display: flex;
   }
-  .personalNews {
+
+  .rightBar {
     display: none;
   }
-  .informations {
-    display: none;
+
+  .mainNews {
+    width: 100%;
   }
 }
