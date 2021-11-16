@@ -11,6 +11,7 @@
 }
 
 .rightBar {
+  height: 100%;
   padding: 0 10px;
   position: fixed;
   right: 10px;
@@ -18,7 +19,7 @@
 }
 
 .personalNews {
-  height: 160%;
+  height: 60%;
   grid-area: personalNews;
   overflow-y: scroll;
   overflow-x: hidden;
