@@ -4,6 +4,7 @@ import { NextAuthOptions } from "next-auth";
 import axios from "axios";
 import { JwtUtils } from "../../../constants/Utils";
 import Google from "next-auth/providers/google";
+import AzureADProvider from "next-auth/providers/azure-ad";
 
 namespace NextAuthUtils {
   export const refreshToken = async function (refreshToken: any) {
@@ -41,10 +42,16 @@ const settings: NextAuthOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID || "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
     }),
+    AzureADProvider({
+      clientId: process.env.AZURE_AD_CLIENT_ID || "",
+      clientSecret: process.env.AZURE_AD_CLIENT_SECRET || "",
+      tenantId: process.env.AZURE_AD_TENANT_ID || "",
+    }),
   ],
 
   callbacks: {
     async jwt({ token, user, account, profile, isNewUser }): Promise<any> {
+      // console.log("TESTE CARA", token, user, account, profile, isNewUser);
       // user just signed in
       if (user) {
         // may have to switch it up a bit for other providers
@@ -63,6 +70,34 @@ const settings: NextAuthOptions = {
               }
             );
 
+            // extract the returned token from the DRF backend and add it to the `user` object
+            const { access_token, refresh_token } = response.data;
+            // reform the `token` object from the access token we appended to the `user` object
+            token = {
+              ...token,
+              accessToken: access_token,
+              refreshToken: refresh_token,
+            };
+
+            return token;
+          } catch (error) {
+            return null;
+          }
+        }
+
+        if (account?.provider === "azure-ad") {
+          // extract these two tokens
+          const { access_token: accessToken } = account;
+
+          // make a POST request to the DRF backend
+          try {
+            const response = await axios.post(
+              // tip: use a seperate .ts file or json file to store such URL endpoints
+              `${process.env.NEXT_PUBLIC_BACKEND_API_BASE}/api/social/login/azure/`,
+              {
+                access_token: accessToken, // note the differences in key and value variable names
+              }
+            );
             // extract the returned token from the DRF backend and add it to the `user` object
             const { access_token, refresh_token } = response.data;
             // reform the `token` object from the access token we appended to the `user` object
